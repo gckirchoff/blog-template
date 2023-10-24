@@ -143,5 +143,32 @@
 }
 
 .prose {
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		.icon-link {
+			position: relative;
+			color: inherit;
+
+			&::before {
+				content: '#';
+				position: absolute;
+				left: -1ch;
+				top: 0;
+				line-height: 1;
+				opacity: 0;
+				color: inherit;
+			}
+		}
+
+		&:hover .icon-link::before {
+			opacity: 1;
+		}
+	}
+}
+
+.prose {
 	max-width: 80ch;
 }
