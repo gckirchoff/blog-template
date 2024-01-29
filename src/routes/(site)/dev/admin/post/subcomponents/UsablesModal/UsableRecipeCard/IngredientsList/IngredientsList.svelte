@@ -23,14 +23,16 @@
 		unit = '';
 		note = '';
 	};
+
+	$: console.log('quantity',quantity)
 </script>
 
 <div class="container">
 	<form on:submit={addIngredient}>
 		<H5>{ingredientsSection.title}</H5>
 		<input placeholder="New Ingredient" bind:value={newIngredient} />
-		<input placeholder="Quantity" type="number" bind:value={quantity} />
-		<input placeholder="Unit" bind:value={unit} />
+		<input placeholder="Quantity" type="number" step="0.01" min="0" bind:value={quantity} on:input={({target}) => {console.log('changing!', target.value)}} />
+		<input placeholder="Unit" type="text" bind:value={unit} />
 		<input placeholder="Note (optional)" bind:value={note} />
 		<Button type="submit">Add Ingredient</Button>
 	</form>
