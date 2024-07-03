@@ -3,6 +3,7 @@
 	import { capitalize } from '$lib/utils/logic.js';
 
 	export let data;
+	const test = 'yea'
 
 	const { categoriesWithCounts } = data;
 </script>
