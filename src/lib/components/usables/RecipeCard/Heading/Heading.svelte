@@ -57,7 +57,7 @@
 			position: absolute;
 			top: 0;
 			left: 50%;
-			transform: translateX(-50%) translateY(-50%);
+			transform: translate(-50%, -50%);
 			height: var(--image-dimension);
 			width: var(--image-dimension);
 			overflow: hidden;
