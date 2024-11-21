@@ -2,8 +2,6 @@
 	import Button from '$lib/components/internal/Button/Button.svelte';
 	import { galleries } from '$lib/content/galleries';
 	import type { PostReqResponse } from '../../../../api/v1/posts/constants';
-	import GalleryEditor from './subcomponents/GalleryEditor.svelte';
-	// import PostEditor from './subcomponents/PostEditor/PostEditor.svelte';
 
 	export let data;
 
