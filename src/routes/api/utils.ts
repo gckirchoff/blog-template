@@ -37,6 +37,33 @@ const uploadAndGetCoverImage = async (
 	return randomCoverImage;
 };
 
+export const uploadAndGetGalleryCoverImage = async (
+	coverImage: string | undefined,
+	slug: string,
+	newImageFile: Blob | null,
+): Promise<string> => {
+	const rootFolderPath = `static/images/galleryImages/${slug}`;
+	await makeDir(rootFolderPath);
+
+	if (newImageFile) {
+		const buffer = Buffer.from(await newImageFile.arrayBuffer());
+		const filePath = `${rootFolderPath}/${newImageFile.name}`;
+		await writeFile(filePath, buffer, 'base64');
+		return newImageFile.name;
+	}
+
+	if (coverImage) {
+		return coverImage;
+	}
+
+	const randomCoverImage = randomDefaultPhoto();
+	await copyFile(
+		`static/images/default-backgrounds/${randomCoverImage}`,
+		`${rootFolderPath}/${randomCoverImage}`,
+	);
+	return randomCoverImage;
+};
+
 export type PostEditorUploadRet = Modify<
 	PostReqPostBody | PatchReqPostBody,
 	{
@@ -83,6 +110,31 @@ export const processContentImages = async (post: string, slug: string): Promise<
 		}
 
 		return post.replaceAll('/temp/', `/${newFolderPath}/`);
+	} catch (err) {
+		console.warn(err);
+		throw new Error((err as { message: string })!.message);
+	}
+};
+
+// Duplicate of processContentImages() above
+export const processGalleryImages = async (images: string, slug: string): Promise<string> => {
+	try {
+		// const tempImageFinder = /(?<=\/temp\/).+?(?=(\)|"))/g;
+		// const imagesToMove = [...post.matchAll(tempImageFinder)].map(([fileName]) => fileName);
+
+		// if (!imagesToMove.length) {
+		// 	return post;
+		// }
+
+		const newFolderPath = `galleryImages/${slug}`;
+		await makeDir(`static/images/${newFolderPath}`);
+
+		for (const image of images) {
+			await rename(`static/images/temp/${image}`, `static/images/${newFolderPath}/${image}`);
+		}
+
+		return 'Moved images from temp to proper folder'
+		// return post.replaceAll('/temp/', `/${newFolderPath}/`);
 	} catch (err) {
 		console.warn(err);
 		throw new Error((err as { message: string })!.message);
