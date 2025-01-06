@@ -6,6 +6,12 @@
 <ul>
 	<li>
 		<a href="/dev/admin">Admin</a>
+		<ul>
+			<li>
+				Test
+				<ul><li>Test</li></ul>
+			</li>
+		</ul>
 	</li>
 	<li>
 		<a href="/dev/palette">Palette</a>
