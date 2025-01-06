@@ -30,7 +30,7 @@
 }
 
 .prose code:not(pre > code) {
-	padding: var(--spacing-4) var(--spacing-8);
+	padding: var(--spacing-2) var(--spacing-4);
 	color: var(--clr-code-inline-txt);
 	background-color: var(--clr-code-inline-bg);
 	border-radius: var(--rounded-4);
@@ -39,6 +39,7 @@
 .prose kbd,
 .prose code {
 	font-family: var(--font-mono);
+	font-size: var(--font-14);
 }
 
 html[data-font='dyslexic'] .prose kbd,
