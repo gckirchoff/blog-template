@@ -37,13 +37,15 @@
 }
 
 .prose > p > a,
-.prose > ul li a {
+.prose > ul li a,
+.prose > ol li a  {
 	text-decoration: underline;
 	text-underline-offset: 4px;
 }
 
 .prose > p,
-.prose > ul li {
+.prose > ul li,
+.prose > ol li {
 	font-size: 1.8rem;
 	line-height: 1.6;
 	font-weight: 500;
@@ -59,6 +61,7 @@
 .prose > h2,
 .prose > h3,
 .prose > ul,
+.prose > ol,
 .prose > p {
 	margin-bottom: var(--spacing-16);
 }
@@ -76,10 +79,6 @@
 .prose > blockquote,
 .prose > details {
 	margin-bottom: var(--spacing-32);
-}
-
-.prose > ol {
-	list-style-type: decimal;
 }
 
 .prose > blockquote {
@@ -183,7 +182,12 @@
 .prose > blockquote,
 .prose > p,
 .prose > ul,
+.prose > ol,
 .prose > hr,
 .prose > table {
 	grid-column: content-start;
+}
+
+.prose ul, .prose ol {
+	padding-left: revert;
 }
